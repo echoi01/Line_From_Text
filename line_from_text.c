@@ -19,6 +19,29 @@ static t_list       *get_fd(t_list **fdinfo, int fd)
     return (hold);
 }
 
+int                 copy_to(char **dst, char **src, char c)
+{
+    int             i;
+    int             count;
+    int             pos;
+
+    i = -1;
+    count = 0;
+    while (src[++i])
+        if (src[i] == c)
+            break;
+    pos = i;
+    if (!(*dst = libc_strnew(i)))
+        return (0);
+    while (src[count] && count < i)
+    {
+        if (!(*dst = //libc_strjoinch(*dst, src[count])))
+            return (0);
+        count++;
+    }
+    return (pos);
+}
+
 int                 *line_from_text(const int fd, char **line)
 {
     char            buff[BUFF_SIZE + 1];
